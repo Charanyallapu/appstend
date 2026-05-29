@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>appstend apps - Secure Vault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="logo">appstend apps</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-particles"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Search Apps</h1>
+                <div class="search-wrapper">
+                    <div class="search-container">
+                        <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="app-search" placeholder="Search apps...">
+                        <button class="btn btn-primary search-btn" id="search-btn">Search</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="container section-container">
+                <div class="section-header">
+                    <h2>Featured App</h2>
+                </div>
+                
+                <div class="single-app-container" id="app-grid">
+                    <div class="app-card" data-keywords="vault file classify security storage">
+                        <div class="icon-box">
+                            <img src="vault-icon.png" alt="Vault Icon" class="app-icon-img">
+                        </div>
+                        <h3>Vault : File Classify</h3>
+                        <p class="desc">Secure, intelligent file organization and encrypted storage for your critical assets.</p>
+                        <div class="card-footer">
+                            <a href="https://github.com/Charanyallapu/appstend/releases/download/website/vault.apk" class="btn btn-card download-link" id="get-btn">Get</a>
+                            <span class="category">Security</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="no-results" style="display: none; text-align: center; padding: 3rem; color: #606C7E; font-weight: 500;">
+                    No apps found matching your search.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">appstend apps</a>
+                <p>&copy; 2026 Appstend Ecosystem.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Search Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('app-search');
+            const searchBtn = document.getElementById('search-btn');
+            const appCard = document.querySelector('.app-card');
+            const noResults = document.getElementById('no-results');
+
+            function performSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+                const keywords = appCard.getAttribute('data-keywords');
+                
+                if (query === '' || keywords.includes(query) || "vault".includes(query)) {
+                    appCard.style.display = 'flex';
+                    noResults.style.display = 'none';
+                } else {
+                    appCard.style.display = 'none';
+                    noResults.style.display = 'block';
+                }
+            }
+
+            searchInput.addEventListener('input', performSearch);
+            searchBtn.addEventListener('click', performSearch);
+        });
+    </script>
+</body>
+</html>
